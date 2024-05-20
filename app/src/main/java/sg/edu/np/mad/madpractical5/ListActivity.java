@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+
+import java.util.List;
 import java.util.Random;
 import android.util.Log;
 import android.os.Bundle;
@@ -29,6 +31,7 @@ import android.widget.ImageView;
 
 public class ListActivity extends AppCompatActivity {
     private DBhandler dbhandler;
+    ArrayList<User> userList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,5 +72,16 @@ public class ListActivity extends AppCompatActivity {
 //                alertDialog.show();
 //            }
 //        });
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        DBhandler dbHandler = new DBhandler(this, null, null, 1);
+        userList = dbHandler.getUsers();
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        UserAdapter recyclerViewAdapter = new UserAdapter(userList, this);
+        recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     }
 }
