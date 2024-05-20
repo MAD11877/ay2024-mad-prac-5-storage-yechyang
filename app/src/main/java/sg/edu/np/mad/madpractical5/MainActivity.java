@@ -23,7 +23,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private DBhandler dbhandler;
+    private DatabaseHandler dbhandler;
     private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        dbhandler = new DBhandler(this, "users.db", null, 1);
+        dbhandler = new DatabaseHandler(this, "users.db", null, 1);
 
         Intent receivingEnd = getIntent();
         int id = receivingEnd.getIntExtra("id", -1);

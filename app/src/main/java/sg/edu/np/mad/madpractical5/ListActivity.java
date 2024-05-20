@@ -30,7 +30,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class ListActivity extends AppCompatActivity {
-    private DBhandler dbhandler;
+    private DatabaseHandler dbhandler;
     ArrayList<User> userList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class ListActivity extends AppCompatActivity {
             return insets;
         });
 
-        dbhandler = new DBhandler(this,"users.db",null,1);
+        dbhandler = new DatabaseHandler(this,"users.db",null,1);
         ArrayList<User> userList = dbhandler.getUsers();
 
         // Add This (RecyclerView)
@@ -77,7 +77,7 @@ public class ListActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        DBhandler dbHandler = new DBhandler(this, null, null, 1);
+        DatabaseHandler dbHandler = new DatabaseHandler(this, null, null, 1);
         userList = dbHandler.getUsers();
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         UserAdapter recyclerViewAdapter = new UserAdapter(userList, this);
